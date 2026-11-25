@@ -1,0 +1,20 @@
+.env
+data/
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.DS_Store
+
+# personal — never committed
+profile.md
+style_notes.md
+data/
+.qodo/
+*.log
+*.pid

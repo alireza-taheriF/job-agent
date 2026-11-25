@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  job-agent:
+    build: .
+    container_name: job-agent
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/app/data          # DB + sessions persist across restarts
+      - ./config.yaml:/app/config.yaml:ro
+      - ./profile.md:/app/profile.md:ro
+      - ./style_notes.md:/app/style_notes.md
+      # Mount data/cv.docx once you place it:
+      # - ./data/cv.docx:/app/data/cv.docx:ro
+    environment:
+      - DB_PATH=/app/data/jobs.db

@@ -1,0 +1,114 @@
+collection:
+  karlancer_daily_limit: 50
+  foreign_daily_limit: 100
+  shortlist_size: 15
+
+scoring:
+  min_fit_score: 50
+  karlancer_min_budget_irt: 500000   # IRR — ~$1 USD = ~600,000 IRR approx
+  foreign_min_salary_usd_month: 300
+
+schedule:
+  karlancer_collect_time: "09:00"    # UTC+3:30 (Tehran)
+  foreign_collect_time: "08:00"
+  inbox_check_interval_minutes: 12
+  daily_summary_time: "21:00"
+  outreach_time: "10:00"
+
+rate_limits:
+  karlancer:
+    max_actions_per_hour: 20
+    max_actions_per_day: 50
+    min_delay_seconds: 2
+    max_delay_seconds: 8
+  default:
+    min_delay_seconds: 1
+    max_delay_seconds: 5
+
+sources:
+  # remote job boards
+  remoteok: true
+  weworkremotely: true
+  remotive: true
+  himalayas: true
+  hackernews: true
+  # relocation / visa-sponsorship roles
+  arbeitnow: true
+  greenhouse: true
+  lever: true
+  ashby: false      # Ashby's API returns 403 to Iranian IPs; turn on when running on a VPS
+  # need a login or scraping — not collected
+  linkedin: false
+  wellfound: false
+  ycombinator: false
+
+# Which work modes to keep. Relocation roles are kept only when the posting
+# mentions relocation or visa sponsorship.
+work_mode:
+  remote: true
+  relocation: true
+
+# Company career boards (public JSON APIs). Wrong slugs are logged and skipped.
+ats_companies:
+  # Checked live 2026-11-25 (each returned open jobs). EU/Asia employers that sponsor visas.
+  greenhouse: [adyen, gitlab, elastic, cloudflare, celonis, n26, contentful, hellofresh,
+               grafanalabs, mongodb, canonical, agoda, wise, trivago, catawiki, trustpilot,
+               veriff, wolt, typeform, datadog, sumup]
+  lever: [binance]
+  ashby: [supabase, posthog, n8n, elevenlabs, synthesia, photoroom, pigment, qonto, doctolib]  # not verified (403 from Iran)
+
+keywords:
+  primary:
+    - python
+    - django
+    - fastapi
+    - llm
+    - machine learning
+    - ai engineer
+    - nlp
+    - computer vision
+    - ocr
+    - pytorch
+    - langchain
+    - langgraph
+    - rag
+  secondary:
+    - backend
+    - api
+    - deep learning
+    - hugging face
+    - transformer
+    - vector search
+    - speech
+    - tts
+    - asr
+    - continual learning
+  karlancer_persian:
+    - هوش مصنوعی
+    - یادگیری ماشین
+    - پایتون
+    - جنگو
+    - پردازش زبان طبیعی
+    - پردازش تصویر
+    - OCR
+    - LLM
+    - FastAPI
+    - بینایی ماشین
+    - یادگیری عمیق
+
+application:
+  auto_send:
+    karlancer_proposals: false
+    foreign_applications: false
+    cold_emails: false
+  dry_run: true               # fill forms but never click submit
+  karlancer_submit: false     # set true only after testing selectors with dry_run
+
+cold_email:
+  max_per_day: 15
+  follow_up_after_days: 6
+  max_follow_ups: 1
+
+tone:
+  karlancer: "professional, friendly, concise — Persian"
+  foreign: "professional, friendly, concise — English"
